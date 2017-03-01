@@ -2121,7 +2121,7 @@ BoundingBox<P>::clear()
 template <class P> template <class S, size_t D> BoundingBox<P>&
 BoundingBox<P>::expand(const Vector<S, D>& p)
 {
-    for (int i = 0; i < dim(); ++i)
+    for (size_t i = 0; i < dim(); ++i)
     {
 	_min[i] = std::min(_min[i], p[i]);
 	_max[i] = std::max(_max[i], p[i]);
@@ -2193,7 +2193,7 @@ BoundingBox<P>::operator |=(const BoundingBox<P>& bbox)
 template <class P> BoundingBox<P>&
 BoundingBox<P>::operator &=(const BoundingBox<P>& bbox)
 {
-    for (int i = 0; i < dim(); ++i)
+    for (size_t i = 0; i < dim(); ++i)
     {
 	_min[i] = std::max(_min[i], bbox.min(i));
 	_max[i] = std::min(_max[i], bbox.max(i));
