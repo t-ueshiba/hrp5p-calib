@@ -1,0 +1,52 @@
+set(headers
+  Array++.h
+  BandMatrix++.h
+  BlockDiagonalMatrix++.h
+  BoxFilter.h
+  Camera++.h
+  DericheConvolver.h
+  EdgeDetector.h
+  FIRFilter.h
+  FIRGaussianConvolver.h
+  Feature.h
+  FeatureMatch.h
+  Filter2.h
+  GFStereo.h
+  GaussianConvolver.h
+  Geometry++.h
+  GuidedFilter.h
+  Heap.h
+  IIRFilter.h
+  Image++.h
+  IntegralImage.h
+  List.h
+  Manip.h
+  Minimize.h
+  Movie.h
+  Profiler.h
+  Random.h
+  Ransac.h
+  Rectify.h
+  SADStereo.h
+  SURFCreator.h
+  SeparableFilter2.h
+  SparseMatrix++.h
+  StereoBase.h
+  StereoIterators.h
+  StereoUtility.h
+  Vector++.h
+  Warp.h
+  algorithm.h
+  fdstream.h
+  functional.h
+  io.h
+  iterator.h
+  pair.h
+  range.h
+  tuple.h
+  types.h
+  )
+
+add_subdirectory(simd)
+
+install(FILES ${headers} DESTINATION include/TU)

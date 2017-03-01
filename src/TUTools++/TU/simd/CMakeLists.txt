@@ -1,0 +1,36 @@
+set(headers
+    BufTraits.h
+    allocator.h
+    arithmetic.h
+    bit_shift.h
+    cast.h
+    compare.h
+    config.h
+    cvt.h
+    cvt_iterator.h
+    cvtdown_iterator.h
+    cvtup_iterator.h
+    dup.h
+    insert_extract.h
+    load_iterator.h
+    load_store.h
+    logical.h
+    lookup.h
+    misc.h
+    pack.h
+    row_vec_iterator.h
+    select.h
+    shift.h
+    shift_iterator.h
+    simd.h
+    store_iterator.h
+    transform.h
+    type_traits.h
+    vec.h
+    zero.h)
+
+add_subdirectory(x86)
+add_subdirectory(arm)
+
+install(FILES ${headers} DESTINATION include/TU/simd)
+

@@ -1,0 +1,6 @@
+add_subdirectory(TUTools++)
+add_subdirectory(TUIIDC++)
+add_subdirectory(TUv++)
+add_subdirectory(TUvIIDC++)
+add_subdirectory(fv)
+add_subdirectory(flowIIDCcamera)
