@@ -95,6 +95,7 @@ target_link_libraries(
     TUTools++
     ${X11_Xaw3d_LIB}
     ${X11_Xt_LIB}
+    ${X11_Xmu_LIB}
     ${X11_LIBRARIES})
 
 install(TARGETS TUv++ LIBRARY DESTINATION lib)

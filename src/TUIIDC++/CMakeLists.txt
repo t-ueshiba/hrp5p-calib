@@ -1,12 +1,8 @@
-#
-cmake_minimum_required(VERSION 2.4)
-
-pkg_check_modules(LIBRAW1394 REQUIRED libraw1394)
 pkg_check_modules(LIBUSB REQUIRED libusb-1.0)
+
 include_directories(
     .
     ../TUTools++
-    ${LIBRAW1394_INCLUDE_DIRS}
     ${LIBUSB_INCLUDE_DIRS})
 
 set(sources
@@ -22,18 +18,30 @@ endif ()
 
 add_library(TUIIDC++ SHARED ${sources})
 
+if (APPLE)
+  add_subdirectory(MacOSX)
+  include_directories(MacOSX)
+  target_link_libraries(
+      TUIIDC++
+      TUTools++
+      raw1394
+      ${LIBUSB_LIBRARIES})
+else ()
+  pkg_check_modules(LIBRAW1394 REQUIRED libraw1394)
+  include_directories(${LIBRAW1394_INCLUDE_DIRS})
+  target_link_libraries(
+      TUIIDC++
+      TUTools++
+      ${LIBRAW1394_LIBRARIES}
+      ${LIBUSB_LIBRARIES})
+endif ()
+
 set(serial "1.0.0")
 set(soserial "1")
 set_target_properties(TUIIDC++	PROPERTIES
 		      VERSION	${serial}
 		      SOVERSION ${soserial})
-target_link_libraries(
-    TUIIDC++
-    TUTools++
-    ${LIBRAW1394_LIBRARIES}
-    ${LIBUSB_LIBRARIES})
 
 install(TARGETS TUIIDC++ LIBRARY DESTINATION lib)
 
 add_subdirectory(TU)
-
