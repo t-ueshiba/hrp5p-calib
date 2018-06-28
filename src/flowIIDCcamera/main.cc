@@ -1,5 +1,5 @@
 /*
- *  $Id: main.cc 2127 2016-12-16 05:29:00Z ueshiba $
+ *  $Id$
  */
 #include <signal.h>
 #include <cstdlib>

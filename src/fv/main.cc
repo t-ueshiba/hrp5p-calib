@@ -1,17 +1,24 @@
 /*
- *  $Id: main.cc 2068 2016-11-23 16:36:02Z ueshiba $
+ *  $Id$
  */
 #include <cstdlib>
 #include "TU/v/App.h"
 #include "TU/v/CmdWindow.h"
 #include "TU/v/CmdPane.h"
 #include "TU/v/CanvasPane.h"
-#include "TU/v/ShmDC.h"
+#ifdef USE_XVDC
+#  include "TU/v/XvDC.h"
+#else
+#  include "TU/v/ShmDC.h"
+#endif
 #include "TU/v/Timer.h"
 #include "TU/v/FileSelection.h"
-#include "TU/Manip.h"
 #include <fstream>
 #include <sstream>
+
+#ifndef EOF
+#  define EOF	(-1)
+#endif
 
 namespace TU
 {
@@ -132,20 +139,24 @@ class MyCanvasPane : public MyCanvasPaneBase
     virtual void		callback(CmdId id, CmdVal val)		;
     
   private:
-#ifdef USE_SHMDC
-    ShmDC			_dc;
+#ifdef USE_XVDC
+    XvDC		_dc;
 #else
-    CanvasPaneDC		_dc;
+#  ifdef USE_SHMDC
+    ShmDC		_dc;
+#  else
+    CanvasPaneDC	_dc;
+#  endif
 #endif
-    const ImageBase::TypeInfo&	_typeInfo;
-    Image<T>			_image;
+    const ImageFormat&	_format;
+    Image<T>		_image;
 };
 
 template <class T>
 MyCanvasPane<T>::MyCanvasPane(Window& parentWin, GenericImage& image, float zoom)
     :MyCanvasPaneBase(parentWin, image, zoom),
      _dc(*this, image.width(), image.height(), zoom),
-     _typeInfo(image.typeInfo()),
+     _format(image.format()),
      _image((T*)image.data(), image.width(), image.height())
 {
     _image.P  = image.P;
@@ -156,7 +167,7 @@ MyCanvasPane<T>::MyCanvasPane(Window& parentWin, GenericImage& image, float zoom
 template <class T> std::istream&
 MyCanvasPane<T>::restoreData(std::istream& in)
 {
-    return _image.restoreData(in, _typeInfo);
+    return _image.restoreData(in, _format);
 }
         
 template <class T> std::ostream&
@@ -223,39 +234,39 @@ MyCmdWindow::MyCmdWindow(App& parentApp, const char* name,
 
     for (size_t i = 0; i < _canvases.size(); ++i)
     {
-	switch (images[i].typeInfo().type)
+	switch (images[i].format().type())
 	{
-	  case ImageBase::U_CHAR:
+	  case ImageFormat::U_CHAR:
 	    _canvases[i] = new MyCanvasPane<u_char>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::RGB_24:
+	  case ImageFormat::RGB_24:
 	    _canvases[i] = new MyCanvasPane<RGB>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::SHORT:
+	  case ImageFormat::SHORT:
 	    _canvases[i] = new MyCanvasPane<short>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::FLOAT:
+	  case ImageFormat::FLOAT:
 	    _canvases[i] = new MyCanvasPane<float>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::YUV_444:
+	  case ImageFormat::YUV_444:
 	    _canvases[i] = new MyCanvasPane<YUV444>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::YUV_422:
+	  case ImageFormat::YUV_422:
 	    _canvases[i] = new MyCanvasPane<YUV422>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::YUYV_422:
+	  case ImageFormat::YUYV_422:
 	    _canvases[i] = new MyCanvasPane<YUYV422>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::YUV_411:
+	  case ImageFormat::YUV_411:
 	    _canvases[i] = new MyCanvasPane<YUV411>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::BMP_8:
+	  case ImageFormat::BMP_8:
 	    _canvases[i] = new MyCanvasPane<u_char>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::BMP_24:
+	  case ImageFormat::BMP_24:
 	    _canvases[i] = new MyCanvasPane<BGR>(*this, images[i], zoom);
 	    break;
-	  case ImageBase::BMP_32:
+	  case ImageFormat::BMP_32:
 	    _canvases[i] = new MyCanvasPane<BGRA>(*this, images[i], zoom);
 	    break;
 	  default:
@@ -425,39 +436,39 @@ main(int argc, char* argv[])
 	{
 	    cerr << i << "-th view: "
 		 << images[i].width() << 'x' << images[i].height() << " (";
-	    switch (images[i].typeInfo().type)
+	    switch (images[i].format().type())
 	    {
-	      case ImageBase::U_CHAR:
+	      case ImageFormat::U_CHAR:
 		cerr << "U_CHAR";
 		break;
-	      case ImageBase::RGB_24:
+	      case ImageFormat::RGB_24:
 		cerr << "RGB_24";
 		break;
-	      case ImageBase::SHORT:
+	      case ImageFormat::SHORT:
 		cerr << "SHORT";
 		break;
-	      case ImageBase::FLOAT:
+	      case ImageFormat::FLOAT:
 		cerr << "FLOAT";
 		break;
-	      case ImageBase::YUV_444:
+	      case ImageFormat::YUV_444:
 		cerr << "YUV_444";
 		break;
-	      case ImageBase::YUV_422:
+	      case ImageFormat::YUV_422:
 		cerr << "YUV_422";
 		break;
-	      case ImageBase::YUYV_422:
+	      case ImageFormat::YUYV_422:
 		cerr << "YUYV_422";
 		break;
-	      case ImageBase::YUV_411:
+	      case ImageFormat::YUV_411:
 		cerr << "YUV_411";
 		break;
-	      case ImageBase::BMP_8:
+	      case ImageFormat::BMP_8:
 		cerr << "BMP_8";
 		break;
-	      case ImageBase::BMP_24:
+	      case ImageFormat::BMP_24:
 		cerr << "BMP_24";
 		break;
-	      case ImageBase::BMP_32:
+	      case ImageFormat::BMP_32:
 		cerr << "BMP_32";
 		break;
 	      default:
