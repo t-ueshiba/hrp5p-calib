@@ -27,6 +27,17 @@ ExternalProject_Add(
 )
 
 #########################################
+#  Load external project: htp5p-comps	#
+#########################################
+ExternalProject_Add(
+    hrp5p-comps
+    SOURCE_DIR		${EXTERNAL_SOURCE_ROOT}/hrp5p-comps
+    GIT_REPOSITORY	https://github.com/t-ueshiba/hrp5p-comps
+    CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
+			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
+)
+
+#########################################
 #  Load external project: TUv++		#
 #########################################
 include(FindX11_Xaw3d)
@@ -40,6 +51,8 @@ if(X11_Xaw3d_FOUND)
       CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
 			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
   )
+  add_dependencies(TUv++ TUTools++)
+  add_dependencies(hrp5p-comps TUv++)
 endif()
 
 #########################################
@@ -56,6 +69,8 @@ if(LIBRAW1394_FOUND AND LIBUSB_FOUND)
       CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
 			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
   )
+  add_dependencies(TUIIDC++ TUTools++)
+  add_dependencies(hrp5p-comps TUIIDC++)
 endif()
 
 #########################################
@@ -69,18 +84,9 @@ if(EXISTS "/usr/include/linux/videodev2.h")
       CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
 			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
   )
+  add_dependencies(TUV4L2++ TUTools++)
+  add_dependencies(hrp5p-comps TUV4L2++)
 endif()
-
-#########################################
-#  Load external project: htp5p-comps	#
-#########################################
-ExternalProject_Add(
-    hrp5p-comps
-    SOURCE_DIR		${EXTERNAL_SOURCE_ROOT}/hrp5p-comps
-    GIT_REPOSITORY	https://github.com/t-ueshiba/hrp5p-comps
-    CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
-			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
-)
 
 #########################################
 #  misc. programs			#
