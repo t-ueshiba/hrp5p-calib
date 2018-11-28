@@ -10,9 +10,9 @@ find_package(PkgConfig)
 #  Load external project		#
 #########################################
 set(EXTERNAL_PREFIX
-    $ENV{HOME}/openrtp  CACHE STRING "External prefix")
+    $ENV{HOME}/usr CACHE STRING "External prefix")
 set(EXTERNAL_SOURCE_ROOT
-    $ENV{HOME}/work/src CACHE STRING "External source root")
+    $ENV{HOME}/src CACHE STRING "External source root")
 
 include(ExternalProject)
 
