@@ -90,9 +90,9 @@ $ sudo make install
 デフォルトでは一般ユーザにはFireWire/USBデバイスを直接操作する権限がないので，
 これを許可するために /etc/udev/rules.d/40-permissions.rules という
 ファイルを作る．
-
-    $ sudo vi /etc/udev/rules.d/40-permissions.rules
-
+```bash
+$ sudo vi /etc/udev/rules.d/40-permissions.rules
+```
 そして，以下の内容を記入する．
 
     ### Begin ###
@@ -105,7 +105,7 @@ $ sudo make install
 そして，実際にカメラを使用するユーザを video グループに登録する．
 （ubuntuの場合，videoグループ自体は既存なので，新たに作る必要はない）
 ```bash
-    $ sudo vi /etc/group
+$ sudo vi /etc/group
 ```
     ### 例：hrpuser を video に登録 ###
     video:x:44:hrpuser
@@ -115,11 +115,11 @@ $ sudo make install
 
 前項の設定を有効化するためにホストマシンをリブートする．
 ```bash
-    $ sudo reboot
+$ sudo reboot
 ```
 再ログインして，自分がvideoグループに属していることを確かめる
 ```bash
-    $ id
+$ id
 ```
 と打って，groups= に44(video) が表示されればOK.
 
@@ -127,17 +127,17 @@ $ sudo make install
 ## カメラの動作確認
 /usr/local/bin に実行パスが通っていることを確認した上で
 ```bash
-    $ flowIIDCcamera 0 | fv
+$ flowIIDCcamera 0 | fv
 ```
 と打つ．fvのウィンドウが現れてカメラからの画像が表示されれば
 成功である．
 ```bash
-    $ flowIIDCcamera 0 0 | fv
+$ flowIIDCcamera 0 0 | fv
 ```
 と打てば2台のカメラからの画像が同時に表示される．
 本来は，左カメラと右カメラの固有IDが分かっていれば
 ```bash
-    $ flowIIDCcamera <left camera id> <right camera id> | fv
+$ flowIIDCcamera <left camera id> <right camera id> | fv
 ```
 と打つことにより，第1のカメラを左，第2のカメラを右にそれぞれ設定できる．
 しかし，最初に起動する時はIDが不明なので，0を与えることによって，順序は
@@ -147,7 +147,7 @@ $ sudo make install
 次のように flowIIDCcamera に -G オプションを付けて起動すると，
 カメラ制御用のGUIが現れて様々なパラメータを変えることができる．
 ```bash
-    $ flowIIDCcamera -G 0 0 | fv
+$ flowIIDCcamera -G 0 0 | fv
 ```
 なお，-G を付けた場合は，flowIIDCcamera はカメラからの画像出力を
 停止した状態で起動する．よって，GUIの"Continuous shot"ボタンを
@@ -157,7 +157,7 @@ $ sudo make install
 カメラを接続しているホスト(remoteとする)と画像を表示するホスト
 (localとする)が異なる時は，
 ```bash
-    local$ ssh remote flowIIDCcamera 0 | fv
+local$ ssh remote flowIIDCcamera 0 | fv
 ```
 とすれば良い．もちろん，localからremoteへsshで接続でき，
 なおかつ接続先で/usr/local/binに実行パスが，/usr/local/libに
