@@ -76,7 +76,7 @@ endif()
 #########################################
 #  Load external project: TUV4L2++	#
 #########################################
-if(EXISTS "/usr/include/linux/videodev2.h")
+if(LINUX)
   ExternalProject_Add(
       TUV4L2++
       SOURCE_DIR	${EXTERNAL_SOURCE_ROOT}/TUV4L2++
