@@ -44,12 +44,15 @@ $ sudo update-alternatives --set cc /usr/bin/gcc
 $ sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
 $ sudo update-alternatives --set c++ /usr/bin/g++
 ```
+
+
 ## hrp5p-calibのダウンロード
 
 GitHubからダウンロードする．
 ```bash
 $ git clone https://github.com/t-ueshiba/hrp5p-calib.git
 ```
+
 
 ## hrp5p-calibのコンパイルとインストール
 
@@ -61,21 +64,26 @@ $ mkdir build
 $ cd build
 $ cmake ..
 $ make
-$ sudo make install
+$ make install
 ```
 次のものがインストールされる：
 
-    ~/usr/bin/flowIIDCcamera	# カメラからの画像ストリームを標準出力へ
-    ~/usr/bin/fv		# 標準入力からの画像ストリームを表示
-    ~/usr/lib/libTUTools++.*	# 様々なツール
-    ~/usr/lib/libTUIIDC++.*	# カメラドライバ
-    ~/usr/lib/libTUv++.*	# GUIツールキット
-    ~/usr/lib/libTUvIIDC++.*	# カメラ制御用GUIのwidget
+    ~/usr/bin/testIIDCcamera	# IIDCカメラのテストプログラム
+    ~/usr/bin/testv4l2camera	# V4L2(Video for Linux v.2)カメラのテストプログラム
+    ~/usr/lib/libTUTools++.so	# 様々なツール
+    ~/usr/lib/libTUIIDC++.so	# IIDCカメラドライバ
+    ~/usr/lib/libTUV4L2++.so	# V4L2(Video for Linux v.2)カメラドライバ
+    ~/usr/lib/libTUv++.so	# GUIツールキット
     ~/usr/include/TU/*.h
     ~/usr/include/TU/simd/*.h
     ~/usr/include/TU/simd/x86/*.h
     ~/usr/include/TU/simd/arm/*.h
     ~/usr/include/TU/v/*.h
+
+IIDC規格に従ったFireWireまたはUSB接続のカメラを使用するには，IIDCカメラドライバが
+必要である．また，Video for Linux v.2に従ったデバイスドライバで駆動されるUSB接続
+のカメラを使用するには，V4L2カメラドライバが必要である．
+
 
 ## 共有ライブラリの検索パスの設定
 
@@ -84,6 +92,7 @@ $ sudo make install
     export LD_LIBRARY_PATH=~/usr/lib:${LD_LIBRARY_PATH}
 
 を追加して，~/usr/lib中の共有ライブラリを検索するようにする．
+
 
 ## 一般ユーザにカメラへのアクセス権を与える
 
@@ -111,6 +120,7 @@ $ sudo vi /etc/group
     video:x:44:hrpuser
     ###
 
+
 ## reboot
 
 前項の設定を有効化するためにホストマシンをリブートする．
@@ -125,42 +135,10 @@ $ id
 
 
 ## カメラの動作確認
-/usr/local/bin に実行パスが通っていることを確認した上で
-```bash
-$ flowIIDCcamera 0 | fv
-```
-と打つ．fvのウィンドウが現れてカメラからの画像が表示されれば
-成功である．
-```bash
-$ flowIIDCcamera 0 0 | fv
-```
-と打てば2台のカメラからの画像が同時に表示される．
-本来は，左カメラと右カメラの固有IDが分かっていれば
-```bash
-$ flowIIDCcamera <left camera id> <right camera id> | fv
-```
-と打つことにより，第1のカメラを左，第2のカメラを右にそれぞれ設定できる．
-しかし，最初に起動する時はIDが不明なので，0を与えることによって，順序は
-不明ながら，とにかく見つかった順に2つのカメラをオープンする．
 
-## カメラパラメータの制御
-次のように flowIIDCcamera に -G オプションを付けて起動すると，
-カメラ制御用のGUIが現れて様々なパラメータを変えることができる．
+~/usr/bin に実行パスが通っていることを確認した上で
 ```bash
-$ flowIIDCcamera -G 0 0 | fv
+$ testIIDCcamera
 ```
-なお，-G を付けた場合は，flowIIDCcamera はカメラからの画像出力を
-停止した状態で起動する．よって，GUIの"Continuous shot"ボタンを
-押して画像出力を開始しないと，fvに画像が表示されない．
-
-## 異なるホストに接続されたカメラからの画像の表示
-カメラを接続しているホスト(remoteとする)と画像を表示するホスト
-(localとする)が異なる時は，
-```bash
-local$ ssh remote flowIIDCcamera 0 | fv
-```
-とすれば良い．もちろん，localからremoteへsshで接続でき，
-なおかつ接続先で/usr/local/binに実行パスが，/usr/local/libに
-共有ライブラリ検索パスがそれぞれ通っていることが前提である．
-
+と打つ．
     

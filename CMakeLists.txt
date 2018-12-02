@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(hrp5p-vidsync)
+project(hrp5p-calib)
 
 set(CMAKE_MODULE_PATH
     ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake_modules")
@@ -9,8 +9,6 @@ find_package(PkgConfig)
 #########################################
 #  Load external project		#
 #########################################
-set(EXTERNAL_PREFIX
-    $ENV{HOME}/usr CACHE STRING "External prefix")
 set(EXTERNAL_SOURCE_ROOT
     $ENV{HOME}/src CACHE STRING "External source root")
 
@@ -23,7 +21,7 @@ ExternalProject_Add(
     TUTools++
     SOURCE_DIR		${EXTERNAL_SOURCE_ROOT}/TUTools++
     GIT_REPOSITORY	https://github.com/t-ueshiba/TUToolsPP
-    CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
+    CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
 )
 
 #########################################
@@ -33,8 +31,8 @@ ExternalProject_Add(
     hrp5p-comps
     SOURCE_DIR		${EXTERNAL_SOURCE_ROOT}/hrp5p-comps
     GIT_REPOSITORY	https://github.com/t-ueshiba/hrp5p-comps
-    CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
-			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
+    CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
+			-DCMAKE_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib
 )
 
 #########################################
@@ -48,8 +46,8 @@ if(X11_Xaw3d_FOUND)
       TUv++
       SOURCE_DIR	${EXTERNAL_SOURCE_ROOT}/TUv++
       GIT_REPOSITORY	https://github.com/t-ueshiba/TUvPP
-      CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
-			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
+      CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
+			-DCMAKE_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib
   )
   add_dependencies(TUv++ TUTools++)
   add_dependencies(hrp5p-comps TUv++)
@@ -66,8 +64,8 @@ if(LIBRAW1394_FOUND AND LIBUSB_FOUND)
       TUIIDC++
       SOURCE_DIR	${EXTERNAL_SOURCE_ROOT}/TUIIDC++
       GIT_REPOSITORY	https://github.com/t-ueshiba/TUIIDCPP
-      CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
-			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
+      CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
+			-DCMAKE_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib
   )
   add_dependencies(TUIIDC++ TUTools++)
   add_dependencies(hrp5p-comps TUIIDC++)
@@ -81,8 +79,8 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
       TUV4L2++
       SOURCE_DIR	${EXTERNAL_SOURCE_ROOT}/TUV4L2++
       GIT_REPOSITORY	https://github.com/t-ueshiba/TUV4L2PP
-      CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${EXTERNAL_PREFIX}
-			-DCMAKE_LIBRARY_PATH=${EXTERNAL_PREFIX}/lib
+      CMAKE_ARGS	-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
+			-DCMAKE_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib
   )
   add_dependencies(TUV4L2++ TUTools++)
   add_dependencies(hrp5p-comps TUV4L2++)
@@ -91,4 +89,4 @@ endif()
 #########################################
 #  misc. programs			#
 #########################################
-add_subdirectory(src)
+#add_subdirectory(src)
