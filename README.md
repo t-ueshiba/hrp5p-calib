@@ -15,9 +15,9 @@ RTコンポーネント。機能は`V4L2CameraComp`と同じだが、カメラ�
 タイムスタンプに記録される。
 3. `VideoSynchronizerComp`: カメラからの画像とキネマティクス情報を入力し、各画像フレーム
 に対して、そのタイムスタンプに最も近い時刻のキネマティクス情報を選択するRTコンポーネント。
-4. `TUImageViewerPlugin`: choreonoid上に画像ストリームを表示するpluinかつ
+4. `TUImageViewerPlugin`: choreonoid上に画像ストリームを表示するpluginかつ
 RTコンポーネント。
-5. `TUControlPanelPlugin`: choreonoidからカメラのパラメータを操作するためのpluinかつ
+5. `TUControlPanelPlugin`: choreonoidからカメラのパラメータを操作するためのpluginかつ
 RTコンポーネント。
 
 ------------------------------
@@ -218,6 +218,9 @@ hrp2001t$ choreonoid V4L2Camera-HRP2KAI.cnoid
 ```
 ウィンドウに"Control panel"ビューと"Image viewer"ビューが現れ、前者にカメラパラメータを
 設定するGUIウィジェットが、後者にカメラからの画像がそれぞれ表示されれば正常に動作している。
+このとき、コンポーネント間の接続は次のような状態になっている:
+
+![alt](doc/00_V4L2Camera-HRP2KAI.png)
 
 ------------------------------
 ## VideoSynchronizerCompの動作確認
@@ -284,8 +287,27 @@ hrp2001t% choreonoid SyncV4L2Camera-HRP2KAI.cnoid
 ```
 と打ってコンポーネント間を接続してactivateする。これにより次のような接続状態になる:
 
-![alt](doc/00_SyncV4L2Camera-HRP2KAI.png)
+![alt](doc/01_SyncV4L2Camera-HRP2KAI.png)
 
 `VideoSynchronizer0`の`primary`ポートに入力された画像は、そのまま`primaryOut`ポート
 に出力される。`secondary`ポートに入力された関節角度ベクトルは、各画像フレームのタイムスタンプ
 に最も近い時刻を持つものが選択されて、その画像フレームと同時に`secondaryOut`ポートに出力される。
+
+### LentiMarkTrackerRTCの導入
+さらに、VideoSynchronizerCompとImageViewerの間にLentiMarkTrackerRTCを挿入すれば、
+トラッカが出力するマーカの3次元ポーズと関節角度を同期できる。前節のコンポーネントに加えて、
+ビジョンPC上で
+```bash
+hrp2001v% LentiMarkTrackerRTC
+```
+と打ってトラッカを起動する。そしてターミナルPCで
+```bash
+hrp2001t% choreonoid SyncLentiMarkV4L2Camera-HRP2KAI.cnoid
+```
+と打ってコンポーネント間を接続してactivateする。これにより次のような接続状態になる:
+
+![alt](doc/02_SyncLentiMarkV4L2Camera-HRP2KAI.png)
+
+`VideoSynchronizer0`の`secondaryOut`ポートに出力される関節角度ベクトルは、
+`LentiMarkTrackerRTC0`の`MarkerPoses`ポートに出力される3次元ポーズと同期
+されている。
