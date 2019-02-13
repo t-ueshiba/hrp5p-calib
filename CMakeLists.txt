@@ -7,7 +7,7 @@ set(CMAKE_MODULE_PATH
 find_package(PkgConfig)
 
 if(DEFINED OPENRTM_DIR)
-  set(OPENRTM_ARGS "-DOPENRTM_DIR=${OPENRTM_DIR})
+  set(OPENRTM_ARGS "-DOPENRTM_DIR=${OPENRTM_DIR}")
 else()
   set(OPENRTM_ARGS "")
 endif()
