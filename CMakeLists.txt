@@ -39,7 +39,10 @@ ExternalProject_Add(
     GIT_REPOSITORY	https://github.com/t-ueshiba/hrp5p-comps
     CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
 			-DCMAKE_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib
+<<<<<<< HEAD:hrp5p-calib/CMakeLists.txt
 			${OPENRTM_ARGS}
+=======
+>>>>>>> 6348532ee7ebf82774c09806385ed9c46d115e61:CMakeLists.txt
 )
 
 #########################################
