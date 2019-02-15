@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/TUIIDC++"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/TUIIDC++.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/TUIIDC++-complete.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUIIDC++-prefix/src/TUIIDC++-stamp/TUIIDC++-install.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUIIDC++-prefix/src/TUIIDC++-stamp/TUIIDC++-mkdir.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUIIDC++-prefix/src/TUIIDC++-stamp/TUIIDC++-download.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUIIDC++-prefix/src/TUIIDC++-stamp/TUIIDC++-update.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUIIDC++-prefix/src/TUIIDC++-stamp/TUIIDC++-patch.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUIIDC++-prefix/src/TUIIDC++-stamp/TUIIDC++-configure.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUIIDC++-prefix/src/TUIIDC++-stamp/TUIIDC++-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"TUIIDC++"
+		],
+		"name" : "TUIIDC++"
+	}
+}

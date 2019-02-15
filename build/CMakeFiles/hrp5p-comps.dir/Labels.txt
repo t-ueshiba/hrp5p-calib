@@ -1,0 +1,13 @@
+# Target labels
+ hrp5p-comps
+# Source files and their labels
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/hrp5p-comps
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/hrp5p-comps.rule
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/hrp5p-comps-complete.rule
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-install.rule
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-mkdir.rule
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-download.rule
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-update.rule
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-patch.rule
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-configure.rule
+/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-build.rule

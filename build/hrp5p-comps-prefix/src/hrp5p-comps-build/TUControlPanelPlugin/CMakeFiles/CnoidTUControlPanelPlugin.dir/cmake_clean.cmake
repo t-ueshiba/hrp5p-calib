@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "corba/Cmd.hh"
+  "corba/CmdDynSk.cc"
+  "corba/CmdSk.cc"
+  "moc_ButtonCmd_.cpp"
+  "moc_ControlPanelView.cpp"
+  "moc_Dialog_.cpp"
+  "moc_GroupBoxCmd_.cpp"
+  "moc_LabelCmd_.cpp"
+  "moc_Menu_.cpp"
+  "moc_SliderCmd_.cpp"
+  "moc_ToggleButtonCmd_.cpp"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/corba/CmdDynSk.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/corba/CmdSk.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/moc_ButtonCmd_.cpp.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/moc_ControlPanelView.cpp.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/moc_Dialog_.cpp.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/moc_GroupBoxCmd_.cpp.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/moc_LabelCmd_.cpp.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/moc_Menu_.cpp.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/moc_SliderCmd_.cpp.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/moc_ToggleButtonCmd_.cpp.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/ButtonCmd.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/ControlPanelPlugin.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/ControlPanelRTC.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/ControlPanelView.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/Dialog.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/GroupBoxCmd.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/LabelCmd.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/Menu.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/SliderCmd.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/ToggleButtonCmd.cc.o"
+  "CMakeFiles/CnoidTUControlPanelPlugin.dir/createCmd.cc.o"
+  "lib/choreonoid-1.7/libCnoidTUControlPanelPlugin.pdb"
+  "lib/choreonoid-1.7/libCnoidTUControlPanelPlugin.so"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/CnoidTUControlPanelPlugin.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/TUTools++"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/TUTools++.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/TUTools++-complete.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUTools++-prefix/src/TUTools++-stamp/TUTools++-install.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUTools++-prefix/src/TUTools++-stamp/TUTools++-mkdir.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUTools++-prefix/src/TUTools++-stamp/TUTools++-download.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUTools++-prefix/src/TUTools++-stamp/TUTools++-update.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUTools++-prefix/src/TUTools++-stamp/TUTools++-patch.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUTools++-prefix/src/TUTools++-stamp/TUTools++-configure.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/TUTools++-prefix/src/TUTools++-stamp/TUTools++-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"TUTools++"
+		],
+		"name" : "TUTools++"
+	}
+}

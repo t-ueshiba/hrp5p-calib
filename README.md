@@ -7,15 +7,14 @@ hrp5p-calib インストール／動作確認手順
 同期をとるために必要なOpenRTMのコンポーネント，カメラドライバおよび
 choreonoid pluginが含まれている．主な構成要素は次のとおりである:
 
-1. `V4L2CameraComp`: USB接続のWEBカメラなど，Video for Linux v.2(V4L2)
+1. `V4L2CameraComp`, `V4L2CameraRTC.so`: USB接続のWEBカメラなど，Video for Linux v.2(V4L2)
 で駆動されるカメラから画像を取得するRTコンポーネント．基本的な機能は
-hrpsys-baseに含まれる`VideoCaptureComp`と同じだが，バスを介して画像が
-ホストPCに到着した時刻を記録するタイムスタンプ機能や，様々な
-カメラパラメータを動的に変更する機能を有する．
-2. `IIDCCameraComp`: IIDC規格に準拠したFireWireまたはUSB接続のカメラから
-画像を取得するRTコンポーネント．機能は`V4L2CameraComp`と同じだが，
-カメラが画像を取得した瞬間の時刻がタイムスタンプに記録される．
-3. `VideoSynchronizerComp`: カメラからの画像とキネマティクス情報を入力し，
+hrpsys-baseに含まれる`VideoCaptureComp`と同じだが，画像データがホストPCに到着した時刻を記録する
+タイムスタンプ機能や，様々なカメラパラメータを動的に変更する機能を有する．
+2. `IIDCCameraComp`. `IIDCCameraRTC.so`: IIDC規格に準拠したFireWire/USB接続のカメラから
+画像を取得するRTコンポーネント．機能は`V4L2Camera[Comp|RTC.so]`と同じだが，
+タイムスタンプには，データが到着した時刻ではなく、カメラが画像を取得した瞬間の時刻が記録される．
+3. `VideoSynchronizerComp, VideoSynchronizerRTC.so`: カメラからの画像とキネマティクス情報を入力し，
 各画像フレームに対して，そのタイムスタンプに最も近い時刻のキネマティクス
 情報を選択するRTコンポーネント．
 4. `TUImageViewerPlugin`: choreonoid上に画像ストリームを表示するplugin
@@ -25,6 +24,8 @@ pluginかつRTコンポーネント．
 
 ------------------------------
 ## インストールとカメラの動作確認
+
+カメラが接続されたホスト(ビジョンPC)に以下の手順で本パッケージをインストールする．
 
 ### 動作環境
 
@@ -84,8 +85,8 @@ $ git clone https://github.com/t-ueshiba/hrp5p-calib.git
 ### hrp5p-calibのコンパイルとインストール
 
 次の手順でコンパイル，インストールする．必要に応じて，インストール場所
-を`CMAKE_INSTALL_PREFIX`で指定する．デフォルトは`/usr/local`．HRP2-KAI
-のVision PC(`hrp2001v`)の場合は`$HOME/usr`．
+を`CMAKE_INSTALL_PREFIX`で指定する．何も指定しない場合のデフォルトは`/usr/local`．HRP2-KAI
+のVision PC(`hrp2001v`)の場合は`$HOME/usr`を陽に指定する．
 
 ```bash
 $ cd hrp5p-calib
@@ -94,8 +95,11 @@ $ cd build
 $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/usr ..
 $ make
 ```
-- 追加でダウンロードされたソースが`$HOME/src`に展開される．
+- `hrp5p-calib`自体はコンパイル環境を整えるだけのメタパッケージであり，
+  実際のソースは`$HOME/src`にダウンロード，展開される．
 - `make install`は不要．
+- GitHub側のパッケージが更新された時でも，`make`だけでローカル側のソースの更新，
+  再コンパイルおよびインストールが実行される．
 
 `CMAKE_INSTALL_PREEFIX`で指定したディレクトリを`${prefix}`とすると，
 次のものがインストールされる：
@@ -103,36 +107,36 @@ $ make
 ##### 必ずインストールされるもの
     ${prefix}/lib/libTUTools++.so	# 様々なツールを収めたライブラリ
     ${prefix}/lib/libTUV4L2++.so	# V4L2(Video for Linux v.2)カメラを制御するライブラリ
-    ${prefix}/include/TU/*        # ライブラリを利用するためのヘッダファイル
+    ${prefix}/include/TU/*       	# ライブラリを利用するためのヘッダファイル
     ${prefix}/bin/testv4l2camera	# V4L2カメラ用テストプログラム
-    ${prefix}/bin/V4L2CameraComp	# V4L2カメラを制御するRTコンポーネント
-    ${prefix}/bin/V4L2MultiCameraComp	# 複数のV4L2カメラを同時に制御するRTコンポーネント
-    ${prefix}/bin/VideoSynchronizerComp # カメラ画像とキネマティクスを同期させるRTコンポーネント
+    ${prefix}/bin/V4L2CameraComp	# V4L2カメラを制御するRTコンポーネントプログラム
+    ${prefix}/lib/V4L2CameraRTC.so	# V4L2カメラを制御するRTコンポーネントモジュール
+    ${prefix}/bin/V4L2MultiCameraComp	# 複数のV4L2カメラを同時に制御するRTコンポーネントプログラム
+    ${prefix}/lib/V4L2MultiCameraRTC.so	# 複数のV4L2カメラを同時に制御するRTコンポーネントモジュール
+    ${prefix}/bin/VideoSynchronizerComp # カメラ画像とキネマティクスを同期させるRTコンポーネントプログラム
+    ${prefix}/lib/VideoSynchronizerRTC.so	# カメラ画像とキネマティクスを同期させるRTコンポーネントモジュール
 
 ##### `libraw1394-dev`,  `libusb-1.0-0-dev`がインストール済みの場合にインストールされるもの
     ${prefix}/lib/libTUIIDC++.so	# IIDCカメラを制御するライブラリ
     ${prefix}/bin/testIIDCcamera	# IIDCカメラ用テストプログラム
-    ${prefix}/bin/IIDCCameraComp	# IIDCカメラを制御するRTコンポーネント
-    ${prefix}/bin/IIDCMultiCameraComp	# 複数のIIDCカメラを同時に制御するRTコンポーネント
+    ${prefix}/bin/IIDCCameraComp	# IIDCカメラを制御するRTコンポーネントプログラム
+    ${prefix}/lib/IIDCCameraRTC.so		# IIDCカメラを制御するRTコンポーネントモジュール
+    ${prefix}/bin/IIDCMultiCameraComp	# 複数のIIDCカメラを同時に制御するRTコンポーネントプログラム
+    ${prefix}/lib/IIDCMultiCameraRTC.so	# 複数のIIDCカメラを同時に制御するRTコンポーネントモジュール
 
 ##### `xaw3dg-dev`がインストール済みの場合にインストールされるもの
-    ${prefix}/lib/libTUv++.so	          # GUIライブラリ
-    ${prefix}/bin/ImageViewerComp	      # カメラ画像を表示するビューワ
-    ${prefix}/bin/MultiImageViewerComp  # 複数のカメラ画像を表示するビューワ
+    ${prefix}/lib/libTUv++.so	        # GUIライブラリ
+    ${prefix}/bin/ImageViewerComp	# カメラ画像を表示するビューワ
+    ${prefix}/bin/MultiImageViewerComp.so  # 複数のカメラ画像を表示するビューワ
 
 ##### choreonoidがインストール済みの場合にインストールされるもの
     ${cnoid_libdir}/libCnoidImageViewerPlugin.so	# カメラ画像を表示するplugin
     ${cnoid_libdir}/libCnoidMultiImageViewerPlugin.so	# 複数のカメラ画像を表示するplugin
     ${cnoid_libdir}/libCnoidControlPanelPlugin.so	# カメラ等のデバイスのパラメータをGUIから設定するplugin
-    ${cnoid_libdir}/rtc/V4L2CameraRTC.so # V4L2カメラを制御するRTCItem化可能なRTコンポーネント
-    ${cnoid_libdir}/rtc/V4L2MultiCameraRTC.so # 複数のV4L2カメラを制御するRTCItem化可能なRTコンポーネント
-    ${cnoid_libdir}/rtc/IIDCCameraRTC.so # IIDCカメラを制御するRTCItem化可能なRTコンポーネント
-    ${cnoid_libdir}/rtc/IIDCMultiCameraRTC.so # 複数のIIDCカメラを制御するRTCItem化可能なRTコンポーネント
     $HOME/cnoid_projcet/*.[cnoid|py]  # テスト用choreonoidプロジェクトファイルとpythonスクリプト
 
 - `${cnoid_libdir}`は，choreonoidのpluginを格納するディレクトリで，たとえば`$HOME/usr/lib/choreonoid-1.7`．
-- `IIDCCameraRTC.so`, `IIDCMultiCameraRTC.so`は，
-`libraw1394-dev`,  `libusb-1.0-0-dev`がインストール済みの場合のみインストールされる．
+
 
 ### 検索パスの設定
 
@@ -145,25 +149,23 @@ $ make
 
 を追加してコマンドと共有ライブラリを検索可能にする．
 
-### 一般ユーザにカメラへのアクセス権を与える
+### 一般ユーザにカメラへのアクセス権を与える(`IIDCCameraComp`. `IIDCCameraRTC.so`を使用する場合)
 
-デフォルトでは一般ユーザにはFireWire/USBデバイスを直接操作する権限がな
-いので，これを許可するために
+`IIDCCameraComp`. `IIDCCameraRTC.so`を使用する場合、デフォルトでは一般ユーザには
+FireWire/USBデバイスを直接操作する権限がないので，これを許可するために
 `/etc/udev/rules.d/40-permissions.rules`というファイルを作る．
 
 ```bash
 $ sudo vi /etc/udev/rules.d/40-permissions.rules
 ```
-そして，以下の内容を記入する．
+そして，以下の内容を記入することによって，videoグループに属するユーザにアクセス権を与える．
 
     # /etc/udev/rules.d/40-permissions.rules
     SUBSYSTEM=="firewire",				GROUP="video"
     SUBSYSTEM=="usb device",				GROUP="video"
     SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device",	GROUP="video"
 
-これにより，videoグループに属するユーザにアクセス権が与えられる．
-そして，実際にカメラを使用するユーザをvideoグループに登録する．
-（ubuntuの場合，videoグループ自体は既存なので，新たに作る必要はない）
+さらに，実際にカメラを使用するユーザをvideoグループに登録する．
 ```bash
 $ sudo vi /etc/group
 ```
@@ -204,9 +206,9 @@ Shot"ボタンを押して画像ストリームが表示されればカメラは
 に保存される．
 
 - ファイルには全てのカメラの設定が，リストの順番で保存される．
-- V4L2CameraComp, V4L2CameraRTCは，最初のカメラの設定を読み込み，2番目以降の
+- V4L2CameraComp, V4L2CameraRTC.soは，最初のカメラの設定を読み込み，2番目以降の
 エントリは無視する．
-- V4L2MultiCameraComp, V4L2MultiCameraRTCは，全カメラの設定を読み込み，
+- V4L2MultiCameraComp, V4L2MultiCameraRTC.soは，全カメラの設定を読み込み，
 ファイル中の順番で番号付けする．
 - よって，所望のカメラを使用するには，保存前に上/下矢印ボタンでリストの
 順番を変更したり，保存後にエディタを用いて不要なカメラのエントリをファイル
@@ -214,32 +216,16 @@ Shot"ボタンを押して画像ストリームが表示されればカメラは
 
 ### choreonoidを用いた異なるホストへのカメラ画像の表示
 
-次に，カメラが接続されているホストから別のホストにOpenRTMを介して画像
-を転送できるか確認する．
+次に，カメラが接続されているホスト(ビジョンPC)から別のホスト(ターミナルPC)に
+OpenRTMを介して画像を転送できるか確認する．
 
-まず，カメラが接続されているホスト(たとえば`hrp2001v`)において，RTコン
-ポーネントのネームサーバへの登録名のフォーマットと実行周期をデフォルト
-から変更するために，以下の内容で`/usr/local/etc/rtc.conf`を作成する:
-
-    # hrp2001v:/usr/local/etc/rtc.conf
-    corba.nameservers: localhost
-    naming.formats: %n.rtc
-    logger.enable: NO
-    logger.loglevel: VERBOSE
-    exec_cxt.periodic.rate: 1000
-
-そして，カメラ制御用RTコンポーネントを立ち上げる:
-```bash
-hrp2001v$ rtm-naming
-hrp2001v$ V4L2CameraComp
-```
-次に，choreonoidがインストールされているホスト(たとえば`hrp2001t`)に
-も上記手順で`hrp5p-calib`をインストールする．そして，
+まず，choreonoidがインストールされているターミナルPC
+(たとえば`hrp2001t`)にも`hrp5p-calib`をインストールする．そして，
 `~/cnoid_project`下にインストールされたchoreonoidプロジェクトファイ
 ルを開く:
 ```bash
 hrp2001t$ cd ~/cnoid_project
-hrp2001t$ choreonoid V4L2Camera-HRP2KAI.cnoid
+hrp2001t$ choreonoid V4L2Camera-HRP.cnoid
 ```
 ウィンドウに"Control panel"ビューと"Image viewer"ビューが現れ，前者に
 カメラパラメータを設定するGUIウィジェットが，後者にカメラからの画像が
@@ -296,7 +282,8 @@ PC(`hrp2001v`)に接続されたカメラからの画像と制御PC(`hrp2001c`)�
 ```bash
 hrp2001v% chronyc sources
 ```
-と打って，同期がとれているか確認する．
+と打って，`hrp2001c`と同期がとれているか確認する．S列に'*'がついているサーバが
+現在の同期対象である．
 
 ### 画像ストリームとキネマティクスの同期
 
@@ -305,16 +292,10 @@ hrp2001v% chronyc sources
 hrp2001c cd ~/usr/share/hrpsys/samples/HRP2KAI
 hrp2001c sudo ./hrpsys.sh
 ```
-と打ってRTコンポーネントを起動する．次に，ビジョンPCで
-```bash
-hrp2001v rtm-naming
-hrp2001v V4L2CameraComp
-hrp2001v VideoSynchronizerComp  #(別ウィンドウで)
-```
-と打ってカメラ制御と同期用のコンポーネントを起動する．最後にターミナルPCで
+と打ってRTコンポーネントを起動する．次に，ターミナルPCで
 ```bash
 hrp2001t% cd ~/cnoid_project
-hrp2001t% choreonoid SyncV4L2Camera-HRP2KAI.cnoid
+hrp2001t% choreonoid SyncV4L2Camera-HRP.cnoid
 ```
 と打ってコンポーネント間を接続してactivateする．これにより次のような接
 続状態になる:
@@ -330,13 +311,9 @@ hrp2001t% choreonoid SyncV4L2Camera-HRP2KAI.cnoid
 
 さらに，VideoSynchronizerCompとImageViewerの間にLentiMarkTrackerRTCを
 挿入すれば，トラッカが出力するマーカの3次元ポーズと関節角度を同期でき
-る．前節のコンポーネントに加えて，ビジョンPC上で
+る．ターミナルPCで
 ```bash
-hrp2001v% LentiMarkTrackerRTC
-```
-と打ってトラッカを起動する．そしてターミナルPCで
-```bash
-hrp2001t% choreonoid SyncLentiMarkV4L2Camera-HRP2KAI.cnoid
+hrp2001t% choreonoid SyncLentiMarkV4L2Camera-HRP.cnoid
 ```
 と打ってコンポーネント間を接続してactivateする．これにより次のような接
 続状態になる:

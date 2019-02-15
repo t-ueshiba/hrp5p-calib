@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/hrp5p-comps"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/hrp5p-comps.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/CMakeFiles/hrp5p-comps-complete.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-install.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-mkdir.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-download.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-update.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-patch.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-configure.rule"
+		},
+		{
+			"file" : "/home/ueshiba/projects/HRP-5P/hrp5p-calib/build/hrp5p-comps-prefix/src/hrp5p-comps-stamp/hrp5p-comps-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"hrp5p-comps"
+		],
+		"name" : "hrp5p-comps"
+	}
+}

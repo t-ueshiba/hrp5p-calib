@@ -1,0 +1,4 @@
+/home/ueshiba/usr/lib/libTUV4L2++.so
+/home/ueshiba/usr/include/TU/V4L2++.h
+/home/ueshiba/usr/include/TU/V4L2CameraArray.h
+/home/ueshiba/usr/bin/testv4l2camera

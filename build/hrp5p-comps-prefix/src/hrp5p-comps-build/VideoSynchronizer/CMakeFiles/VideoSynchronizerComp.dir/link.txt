@@ -1,0 +1,1 @@
+/usr/bin/g++   -Wall -O3   CMakeFiles/VideoSynchronizerComp.dir/main.cc.o CMakeFiles/VideoSynchronizerComp.dir/corba/ImgDynSk.cc.o CMakeFiles/VideoSynchronizerComp.dir/corba/ImgSk.cc.o CMakeFiles/VideoSynchronizerComp.dir/VideoSynchronizerRTC.cc.o  -o VideoSynchronizerComp -rdynamic -luuid -ldl -export-dynamic -lpthread -lomniORB4 -lomnithread -lomniDynamic4 -lRTC -lcoil 
