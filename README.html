@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="hrp5p-calib-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%EF%BC%8F%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D%E6%89%8B%E9%A0%86">hrp5p-calib インストール／動作確認手順</h1>
+<hr>
+<h2 id="%E6%A6%82%E8%A6%81">概要</h2>
+<p>本ソフトウェアパッケージには，HRPロボット上でカメラとキネマティクスの
+同期をとるために必要なOpenRTMのコンポーネント，カメラドライバおよび
+choreonoid pluginが含まれている．主な構成要素は次のとおりである:</p>
+<ol>
+<li><code>V4L2CameraComp</code>: USB接続のWEBカメラなど，Video for Linux v.2(V4L2)
+で駆動されるカメラから画像を取得するRTコンポーネント．基本的な機能は
+hrpsys-baseに含まれる<code>VideoCaptureComp</code>と同じだが，バスを介して画像が
+ホストPCに到着した時刻を記録するタイムスタンプ機能や，様々な
+カメラパラメータを動的に変更する機能を有する．</li>
+<li><code>IIDCCameraComp</code>: IIDC規格に準拠したFireWireまたはUSB接続のカメラから
+画像を取得するRTコンポーネント．機能は<code>V4L2CameraComp</code>と同じだが，
+カメラが画像を取得した瞬間の時刻がタイムスタンプに記録される．</li>
+<li><code>VideoSynchronizerComp</code>: カメラからの画像とキネマティクス情報を入力し，
+各画像フレームに対して，そのタイムスタンプに最も近い時刻のキネマティクス
+情報を選択するRTコンポーネント．</li>
+<li><code>TUImageViewerPlugin</code>: choreonoid上に画像ストリームを表示するplugin
+かつRTコンポーネント．</li>
+<li><code>TUControlPanelPlugin</code>: choreonoidからカメラのパラメータを操作するための
+pluginかつRTコンポーネント．</li>
+</ol>
+<hr>
+<h2 id="%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%A8%E3%82%AB%E3%83%A1%E3%83%A9%E3%81%AE%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D">インストールとカメラの動作確認</h2>
+<h3 id="%E5%8B%95%E4%BD%9C%E7%92%B0%E5%A2%83">動作環境</h3>
+<p>以下の環境で動作確認済み</p>
+<pre><code>ubuntu-14.04(64bit), ubuntu-16.04(64bit)
+</code></pre>
+<h3 id="%E5%BF%85%E8%A6%81%E3%81%AA%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">必要なパッケージのインストール</h3>
+<p>事前に必要なパッケージをインストールしておく.</p>
+<pre class="hljs"><code><div>$ sudo apt-get install build-essential cmake cmake-curses-gui \
+  libboost-all-dev xaw3dg-dev libraw1394-dev libusb-1.0-0-dev \
+  libyaml-cpp-dev libgtk2.0-dev
+</div></code></pre>
+<ul>
+<li>さらにOpenRTM-1.1.2以上をインストールしておく．</li>
+<li>IIDC規格に準拠したFireWireまたはUSB接続のカメラを使用しない場合は，
+<code>libraw1394-dev</code>,  <code>libusb-1.0-0-dev</code>は不要．</li>
+<li>choreonoidがインストール済みでこれを利用して動作確認を行う場合は，
+<code>xaw3dg-dev</code>は不要．</li>
+</ul>
+<h3 id="gcc-49%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABubuntu-1404%E3%81%AE%E3%81%BF">gcc-4.9のインストール(ubuntu-14.04のみ)</h3>
+<p>ubuntu-14.04のデフォルトのコンパイラはgcc-4.8であるが，C++14のサポート
+が不完全なため，本コードをコンパイルできない．そこで，以下の手順で
+gcc-4.9をインストールする．</p>
+<pre class="hljs"><code><div>$ sudo add-apt-repository ppa:ubuntu-toolchain-r/<span class="hljs-built_in">test</span>
+
+$ sudo apt-get update
+$ sudo apt-get install g++-4.9
+
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 10
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20
+
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 10
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20
+
+$ sudo rm /usr/bin/cpp
+$ sudo update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-4.8 10
+$ sudo update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-4.9 20
+
+$ sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+$ sudo update-alternatives --<span class="hljs-built_in">set</span> cc /usr/bin/gcc
+
+$ sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
+$ sudo update-alternatives --<span class="hljs-built_in">set</span> c++ /usr/bin/g++
+</div></code></pre>
+<h3 id="hrp5p-calib%E3%81%AE%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89">hrp5p-calibのダウンロード</h3>
+<p>GitHubからダウンロードする．</p>
+<pre class="hljs"><code><div>$ git <span class="hljs-built_in">clone</span> https://github.com/t-ueshiba/hrp5p-calib.git
+</div></code></pre>
+<h3 id="hrp5p-calib%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%AB%E3%81%A8%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">hrp5p-calibのコンパイルとインストール</h3>
+<p>次の手順でコンパイル，インストールする．必要に応じて，インストール場所
+を<code>CMAKE_INSTALL_PREFIX</code>で指定する．デフォルトは<code>/usr/local</code>．HRP2-KAI
+のVision PC(<code>hrp2001v</code>)の場合は<code>$HOME/usr</code>．</p>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">cd</span> hrp5p-calib
+$ mkdir build
+$ <span class="hljs-built_in">cd</span> build
+$ cmake -DCMAKE_INSTALL_PREFIX=<span class="hljs-variable">$HOME</span>/usr ..
+$ make
+</div></code></pre>
+<ul>
+<li>追加でダウンロードされたソースが<code>$HOME/src</code>に展開される．</li>
+<li><code>make install</code>は不要．</li>
+</ul>
+<p><code>CMAKE_INSTALL_PREEFIX</code>で指定したディレクトリを<code>${prefix}</code>とすると，
+次のものがインストールされる：</p>
+<h5 id="%E5%BF%85%E3%81%9A%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE">必ずインストールされるもの</h5>
+<pre><code>${prefix}/lib/libTUTools++.so	# 様々なツールを収めたライブラリ
+${prefix}/lib/libTUV4L2++.so	# V4L2(Video for Linux v.2)カメラを制御するライブラリ
+${prefix}/include/TU/*        # ライブラリを利用するためのヘッダファイル
+${prefix}/bin/testv4l2camera	# V4L2カメラ用テストプログラム
+${prefix}/bin/V4L2CameraComp	# V4L2カメラを制御するRTコンポーネント
+${prefix}/bin/V4L2MultiCameraComp	# 複数のV4L2カメラを同時に制御するRTコンポーネント
+${prefix}/bin/VideoSynchronizerComp # カメラ画像とキネマティクスを同期させるRTコンポーネント
+</code></pre>
+<h5 id="libraw1394-dev-libusb-10-0-dev%E3%81%8C%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE"><code>libraw1394-dev</code>,  <code>libusb-1.0-0-dev</code>がインストール済みの場合にインストールされるもの</h5>
+<pre><code>${prefix}/lib/libTUIIDC++.so	# IIDCカメラを制御するライブラリ
+${prefix}/bin/testIIDCcamera	# IIDCカメラ用テストプログラム
+${prefix}/bin/IIDCCameraComp	# IIDCカメラを制御するRTコンポーネント
+${prefix}/bin/IIDCMultiCameraComp	# 複数のIIDCカメラを同時に制御するRTコンポーネント
+</code></pre>
+<h5 id="xaw3dg-dev%E3%81%8C%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE"><code>xaw3dg-dev</code>がインストール済みの場合にインストールされるもの</h5>
+<pre><code>${prefix}/lib/libTUv++.so	          # GUIライブラリ
+${prefix}/bin/ImageViewerComp	      # カメラ画像を表示するビューワ
+${prefix}/bin/MultiImageViewerComp  # 複数のカメラ画像を表示するビューワ
+</code></pre>
+<h5 id="choreonoid%E3%81%8C%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%82%8B%E3%82%82%E3%81%AE">choreonoidがインストール済みの場合にインストールされるもの</h5>
+<pre><code>${cnoid_libdir}/libCnoidImageViewerPlugin.so	# カメラ画像を表示するplugin
+${cnoid_libdir}/libCnoidMultiImageViewerPlugin.so	# 複数のカメラ画像を表示するplugin
+${cnoid_libdir}/libCnoidControlPanelPlugin.so	# カメラ等のデバイスのパラメータをGUIから設定するplugin
+${cnoid_libdir}/rtc/V4L2CameraRTC.so # V4L2カメラを制御するRTCItem化可能なRTコンポーネント
+${cnoid_libdir}/rtc/V4L2MultiCameraRTC.so # 複数のV4L2カメラを制御するRTCItem化可能なRTコンポーネント
+${cnoid_libdir}/rtc/IIDCCameraRTC.so # IIDCカメラを制御するRTCItem化可能なRTコンポーネント
+${cnoid_libdir}/rtc/IIDCMultiCameraRTC.so # 複数のIIDCカメラを制御するRTCItem化可能なRTコンポーネント
+$HOME/cnoid_projcet/*.[cnoid|py]  # テスト用choreonoidプロジェクトファイルとpythonスクリプト
+</code></pre>
+<ul>
+<li><code>${cnoid_libdir}</code>は，choreonoidのpluginを格納するディレクトリで，たとえば<code>$HOME/usr/lib/choreonoid-1.7</code>．</li>
+<li><code>IIDCCameraRTC.so</code>, <code>IIDCMultiCameraRTC.so</code>は，
+<code>libraw1394-dev</code>,  <code>libusb-1.0-0-dev</code>がインストール済みの場合のみインストールされる．</li>
+</ul>
+<h3 id="%E6%A4%9C%E7%B4%A2%E3%83%91%E3%82%B9%E3%81%AE%E8%A8%AD%E5%AE%9A">検索パスの設定</h3>
+<p>インストール場所<code>${prefix}</code>にコマンドと共有ライブラリのパスが通ってい
+なければ，<code>~/.bashrc</code> の中に</p>
+<pre><code># ~/.bashrc
+export PATH=${PATH}:${prefix}/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${prefix}/lib
+</code></pre>
+<p>を追加してコマンドと共有ライブラリを検索可能にする．</p>
+<h3 id="%E4%B8%80%E8%88%AC%E3%83%A6%E3%83%BC%E3%82%B6%E3%81%AB%E3%82%AB%E3%83%A1%E3%83%A9%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E6%A8%A9%E3%82%92%E4%B8%8E%E3%81%88%E3%82%8B">一般ユーザにカメラへのアクセス権を与える</h3>
+<p>デフォルトでは一般ユーザにはFireWire/USBデバイスを直接操作する権限がな
+いので，これを許可するために
+<code>/etc/udev/rules.d/40-permissions.rules</code>というファイルを作る．</p>
+<pre class="hljs"><code><div>$ sudo vi /etc/udev/rules.d/40-permissions.rules
+</div></code></pre>
+<p>そして，以下の内容を記入する．</p>
+<pre><code># /etc/udev/rules.d/40-permissions.rules
+SUBSYSTEM==&quot;firewire&quot;,				GROUP=&quot;video&quot;
+SUBSYSTEM==&quot;usb device&quot;,				GROUP=&quot;video&quot;
+SUBSYSTEM==&quot;usb&quot;, ENV{DEVTYPE}==&quot;usb_device&quot;,	GROUP=&quot;video&quot;
+</code></pre>
+<p>これにより，videoグループに属するユーザにアクセス権が与えられる．
+そして，実際にカメラを使用するユーザをvideoグループに登録する．
+（ubuntuの場合，videoグループ自体は既存なので，新たに作る必要はない）</p>
+<pre class="hljs"><code><div>$ sudo vi /etc/group
+</div></code></pre>
+<pre><code>### 例：hrp2user を video に登録 ###
+video:x:44:hrp2user
+</code></pre>
+<h3 id="reboot">reboot</h3>
+<p>前項の設定を有効化するためにホストマシンをリブートする．</p>
+<pre class="hljs"><code><div>$ sudo reboot
+</div></code></pre>
+<p>再ログインして，自分がvideoグループに属していることを確かめる</p>
+<pre class="hljs"><code><div>$ id
+</div></code></pre>
+<p>と打ってgroups= に44(video) が表示されればOK.</p>
+<h3 id="%E3%82%AB%E3%83%A1%E3%83%A9%E5%8D%98%E4%BD%93%E3%81%AE%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D%E3%81%A8%E3%82%AB%E3%83%A1%E3%83%A9%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E7%94%9F%E6%88%90">カメラ単体の動作確認とカメラ設定ファイルの生成</h3>
+<p>V4L2カメラの場合を例にして説明する．<code>${prefix}/bin</code> に実行パスが通って
+いることを確認した上で</p>
+<pre class="hljs"><code><div>$ testv4l2camera
+</div></code></pre>
+<p>と打つ．ウィンドウが開き，利用可能なカメラがあればそのデバイスファイル
+名<code>/dev/video*</code>がリストに表示されるので，その一つを選択して&quot;View&quot;ボタ
+ンを押す．すると新たなウィンドウがポップアップするので，&quot;Continous
+Shot&quot;ボタンを押して画像ストリームが表示されればカメラは正常に動作して
+いる．カメラのパラメータや画像フォーマット等をGUIから設定できる．</p>
+<p>次に，RTコンポーネントのためのカメラ設定ファイルを生成する．上記
+<code>testv4l2camera</code>の最初のウィンドウで&quot;Save&quot;ボタンを押せば，全カメラの現
+在の設定がYAMLフォーマットで</p>
+<pre><code>${prefix}/etc/V4L2Camera.conf
+</code></pre>
+<p>に保存される．</p>
+<ul>
+<li>ファイルには全てのカメラの設定が，リストの順番で保存される．</li>
+<li>V4L2CameraComp, V4L2CameraRTCは，最初のカメラの設定を読み込み，2番目以降の
+エントリは無視する．</li>
+<li>V4L2MultiCameraComp, V4L2MultiCameraRTCは，全カメラの設定を読み込み，
+ファイル中の順番で番号付けする．</li>
+<li>よって，所望のカメラを使用するには，保存前に上/下矢印ボタンでリストの
+順番を変更したり，保存後にエディタを用いて不要なカメラのエントリをファイル
+から削除する等の作業が必要なことがある．</li>
+</ul>
+<h3 id="choreonoid%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E7%95%B0%E3%81%AA%E3%82%8B%E3%83%9B%E3%82%B9%E3%83%88%E3%81%B8%E3%81%AE%E3%82%AB%E3%83%A1%E3%83%A9%E7%94%BB%E5%83%8F%E3%81%AE%E8%A1%A8%E7%A4%BA">choreonoidを用いた異なるホストへのカメラ画像の表示</h3>
+<p>次に，カメラが接続されているホストから別のホストにOpenRTMを介して画像
+を転送できるか確認する．</p>
+<p>まず，カメラが接続されているホスト(たとえば<code>hrp2001v</code>)において，RTコン
+ポーネントのネームサーバへの登録名のフォーマットと実行周期をデフォルト
+から変更するために，以下の内容で<code>/usr/local/etc/rtc.conf</code>を作成する:</p>
+<pre><code># hrp2001v:/usr/local/etc/rtc.conf
+corba.nameservers: localhost
+naming.formats: %n.rtc
+logger.enable: NO
+logger.loglevel: VERBOSE
+exec_cxt.periodic.rate: 1000
+</code></pre>
+<p>そして，カメラ制御用RTコンポーネントを立ち上げる:</p>
+<pre class="hljs"><code><div>hrp2001v$ rtm-naming
+hrp2001v$ V4L2CameraComp
+</div></code></pre>
+<p>次に，choreonoidがインストールされているホスト(たとえば<code>hrp2001t</code>)に
+も上記手順で<code>hrp5p-calib</code>をインストールする．そして，
+<code>~/cnoid_project</code>下にインストールされたchoreonoidプロジェクトファイ
+ルを開く:</p>
+<pre class="hljs"><code><div>hrp2001t$ <span class="hljs-built_in">cd</span> ~/cnoid_project
+hrp2001t$ choreonoid V4L2Camera-HRP2KAI.cnoid
+</div></code></pre>
+<p>ウィンドウに&quot;Control panel&quot;ビューと&quot;Image viewer&quot;ビューが現れ，前者に
+カメラパラメータを設定するGUIウィジェットが，後者にカメラからの画像が
+それぞれ表示されれば正常に動作している．このとき，コンポーネント間の接
+続は次のような状態になっている:</p>
+<p><img src="doc/00_V4L2Camera-HRP2KAI.png" alt="alt"></p>
+<hr>
+<h2 id="videosynchronizercomp%E3%81%AE%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D">VideoSynchronizerCompの動作確認</h2>
+<p>以上の動作確認が完了しているとの前提で，カメラ画像とロボットのキネマティ
+クスを同期させる方法を説明する．例として，HRP2-KAIのビジョン
+PC(<code>hrp2001v</code>)に接続されたカメラからの画像と制御PC(<code>hrp2001c</code>)が取得し
+た関節角度を<code>hrp2001v</code>上で同期させ，その結果をターミナルPC
+(<code>hrp2001t</code>)上のchoreonoidに表示させることを考える．</p>
+<h3 id="%E5%88%B6%E5%BE%A1pc%E3%81%A8%E3%83%93%E3%82%B8%E3%83%A7%E3%83%B3pc%E3%81%AE%E6%99%82%E5%88%BB%E5%90%88%E3%82%8F%E3%81%9B">制御PCとビジョンPCの時刻合わせ</h3>
+<p>キネマティクス情報と画像フレームには，それぞれ制御PC(<code>hrp2001c</code>)とビジョ
+ンPC(<code>hrp2001v</code>)のクロックによりタイムスタンプが付される．両者の時刻合
+わせをするため，ソフトウェアクロックに加えてハードウェアクロックも同期
+できるchronyを使用する．<code>hrp2001c</code>をタイムサーバとし，このクロックに
+<code>hrp2001v</code>のクロックを同期させる．</p>
+<p>まず，両方のPCに</p>
+<pre class="hljs"><code><div>% sudo apt-get install chrony
+</div></code></pre>
+<p>によってchronyをインストールする．次に，
+<code>hrp2001c:/etc/chrony/chrony.conf</code>に対して，コメントアウトされている次
+の行を生かす:</p>
+<pre><code># hrp2001c:/etc/chrony/chrony.conf
+local stratum 10  # このホストをサーバにする
+</code></pre>
+<p>更に，次の行を追加する:</p>
+<pre><code># hrp2001c:/etc/chrony/chrony.conf
+allow 150.29.144.0/9  # subnetからの問い合わせに応じる
+</code></pre>
+<p>また，<code>hrp2001v:/etc/chrony/chrony.conf</code>には次を追加する:</p>
+<pre><code># hrp2001v:/etc/chrony/chrony.conf
+server hrp2001c prefer  # hrp2001cに優先的に問い合わせる
+stratumweight 3
+makestep 1.0 3
+</code></pre>
+<p>両ホストで</p>
+<pre class="hljs"><code><div>% sudo systemctl restart chrony
+</div></code></pre>
+<p>によってデーモンを再起動した後，しばらくしてから<code>hrp2001v</code>上で</p>
+<pre class="hljs"><code><div>hrp2001v% chronyc sources
+</div></code></pre>
+<p>と打って，同期がとれているか確認する．</p>
+<h3 id="%E7%94%BB%E5%83%8F%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%A0%E3%81%A8%E3%82%AD%E3%83%8D%E3%83%9E%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9%E3%81%AE%E5%90%8C%E6%9C%9F">画像ストリームとキネマティクスの同期</h3>
+<p>制御PCで</p>
+<pre class="hljs"><code><div>hrp2001c <span class="hljs-built_in">cd</span> ~/usr/share/hrpsys/samples/HRP2KAI
+hrp2001c sudo ./hrpsys.sh
+</div></code></pre>
+<p>と打ってRTコンポーネントを起動する．次に，ビジョンPCで</p>
+<pre class="hljs"><code><div>hrp2001v rtm-naming
+hrp2001v V4L2CameraComp
+hrp2001v VideoSynchronizerComp  <span class="hljs-comment">#(別ウィンドウで)</span>
+</div></code></pre>
+<p>と打ってカメラ制御と同期用のコンポーネントを起動する．最後にターミナルPCで</p>
+<pre class="hljs"><code><div>hrp2001t% <span class="hljs-built_in">cd</span> ~/cnoid_project
+hrp2001t% choreonoid SyncV4L2Camera-HRP2KAI.cnoid
+</div></code></pre>
+<p>と打ってコンポーネント間を接続してactivateする．これにより次のような接
+続状態になる:</p>
+<p><img src="doc/01_SyncV4L2Camera-HRP2KAI.png" alt="alt"></p>
+<p><code>VideoSynchronizer0</code>の<code>primary</code>ポートに入力された画像は，そのまま
+<code>primaryOut</code>ポートに出力される．<code>secondary</code>ポートに入力された関節角度
+ベクトルは，各画像フレームのタイムスタンプに最も近い時刻を持つものが選
+択されて，その画像フレームと同時に<code>secondaryOut</code>ポートに出力される．</p>
+<h3 id="lentimarktrackerrtc%E3%81%AE%E5%B0%8E%E5%85%A5">LentiMarkTrackerRTCの導入</h3>
+<p>さらに，VideoSynchronizerCompとImageViewerの間にLentiMarkTrackerRTCを
+挿入すれば，トラッカが出力するマーカの3次元ポーズと関節角度を同期でき
+る．前節のコンポーネントに加えて，ビジョンPC上で</p>
+<pre class="hljs"><code><div>hrp2001v% LentiMarkTrackerRTC
+</div></code></pre>
+<p>と打ってトラッカを起動する．そしてターミナルPCで</p>
+<pre class="hljs"><code><div>hrp2001t% choreonoid SyncLentiMarkV4L2Camera-HRP2KAI.cnoid
+</div></code></pre>
+<p>と打ってコンポーネント間を接続してactivateする．これにより次のような接
+続状態になる:</p>
+<p><img src="doc/02_SyncLentiMarkV4L2Camera-HRP2KAI.png" alt="alt"></p>
+<p><code>VideoSynchronizer0</code>の<code>secondaryOut</code>ポートに出力される関節角度ベクトル
+は，<code>LentiMarkTrackerRTC0</code>の<code>MarkerPoses</code>ポートに出力される3次元ポーズ
+と同期されている．</p>
+
+</body>
+</html>
