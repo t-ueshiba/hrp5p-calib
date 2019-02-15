@@ -1,4 +1,0 @@
-/home/ueshiba/usr/lib/libTUIIDC++.so
-/home/ueshiba/usr/include/TU/IIDC++.h
-/home/ueshiba/usr/include/TU/IIDCCameraArray.h
-/home/ueshiba/usr/bin/testIIDCcamera

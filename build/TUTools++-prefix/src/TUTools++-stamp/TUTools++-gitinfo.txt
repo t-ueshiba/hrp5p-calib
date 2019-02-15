@@ -1,3 +1,0 @@
-repository='https://github.com/t-ueshiba/TUToolsPP'
-module=''
-tag=''

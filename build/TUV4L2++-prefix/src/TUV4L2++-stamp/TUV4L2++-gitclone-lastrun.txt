@@ -1,3 +1,0 @@
-repository='https://github.com/t-ueshiba/TUV4L2PP'
-module=''
-tag=''
