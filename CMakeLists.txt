@@ -6,6 +6,12 @@ set(CMAKE_MODULE_PATH
     ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake_modules")
 find_package(PkgConfig)
 
+if(DEFINED OPENRTM_DIR)
+  set(OPENRTM_ARGS "-DOPENRTM_DIR=${OPENRTM_DIR})
+else()
+  set(OPENRTM_ARGS "")
+endif()
+
 #########################################
 #  Load external project		#
 #########################################
@@ -33,6 +39,7 @@ ExternalProject_Add(
     GIT_REPOSITORY	https://github.com/t-ueshiba/hrp5p-comps
     CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
 			-DCMAKE_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib
+			${OPENRTM_ARGS}
 )
 
 #########################################
